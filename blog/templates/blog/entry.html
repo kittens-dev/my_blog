@@ -1,0 +1,69 @@
+{% extends 'blog/base.html' %}
+
+{% load bootstrap5 %}
+
+{% block header %}
+    
+        <div class="card text-dark bg-light mb-3">
+            <div class="card-header">
+                <h6 class="card-title"> 
+                    {% if user == entry.topic.owner %}
+                        <a href="{% url 'blog:topic' entry.topic.id %}" class="link-secondary">{{ entry.topic }}</a>  
+                    {% else %}
+                        <font color="grey">{{ entry.topic }}</font>
+                    {% endif %} 
+                    - {{ entry.date_added|date:'M d, Y H:i' }}
+                    <small> (добавлено <b>{{ entry.topic.owner }}</b>)</small>
+                    <br/>
+                    <h4>{{ entry.title }}</h4>
+                </h6>
+            <div>
+            <div class="card-body">
+                <p class="card-text">{{ entry.text|safe }}</p>
+            <div>
+        </div>
+
+{% endblock header %}
+
+
+{% block content %}
+
+    <hr />
+
+    {% for comment in comments %}
+        <ul class="list-group list-group-mine">
+        <li class="list-group-item">
+        <div class="card text-dark bg-light mb-3">
+            <div class="card-header">
+                <h6 class="card-title"> 
+                    {{ comment.date_added|date:'M d, Y H:i' }}
+                    <small> (добавлено <b>{{ comment.owner }}</b>)</small>
+                </h6>
+            <div>
+            <div class="card-body">
+                <p class="card-text">{{ comment.text|linebreaks }}</p>
+            <div>
+        </div>
+        </li>
+        </ul>
+    {% empty %}
+        <b>Не найдено комментариев.</b>
+    {% endfor %}  
+
+    <p>
+
+    {% if user.is_authenticated %}
+        <form action="{% url 'blog:entry' entry.id %}" method="post" class="form">
+            {% csrf_token %}
+
+            {% bootstrap_form form %}
+
+            {% buttons %}
+                <button name="submit" class="btn btn-primary">добавить комментарий</button>
+            {% endbuttons%}
+        </form> 
+    {% else %}
+        <b>Только зарегистрированные пользователи могут оставлять комментарии.</b>
+    {% endif %}    
+
+{% endblock content %}
