@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     # 3rd party
     'bootstrap5',
     'tinymce',
+    'captcha',
 ]
 
 MIDDLEWARE = [
@@ -139,6 +140,9 @@ STATIC_ROOT = 'staticfiles'
 
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
+# for test
+SILENCED_SYSTEM_CHECKS = ['captcha.recaptcha_test_key_error']
+
 
 if os.getcwd() == '/app':
 
@@ -159,3 +163,8 @@ if os.getcwd() == '/app':
     STATIC_ROOT = 'staticfiles'
 
     STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+
+    # re captcha
+    RECAPTCHA_PUBLIC_KEY = '6LeICpQaAAAAAE9LSjcRgXdC713kc-IwpR0hBVNj'
+    RECAPTCHA_PRIVATE_KEY = '6LeICpQaAAAAAD_-qu39rTFk6Iys9oXFaBRTCMyq'
+    RECAPTCHA_REQUIRED_SCORE = 0.85
