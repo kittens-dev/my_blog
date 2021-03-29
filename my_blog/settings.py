@@ -164,7 +164,6 @@ if os.getcwd() == '/app':
 
     STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
-    # re captcha
+    # re captcha v2
     RECAPTCHA_PUBLIC_KEY = '6LfwF5QaAAAAALeu_mHG-MmmuYHORwPyBqmehGuQ'
     RECAPTCHA_PRIVATE_KEY = '6LfwF5QaAAAAANn5nzfg8G77fUfECoGfxHk7x1pq'
-    #RECAPTCHA_REQUIRED_SCORE = 0.85
