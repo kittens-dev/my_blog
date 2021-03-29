@@ -140,8 +140,12 @@ STATIC_ROOT = 'staticfiles'
 
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
+
+# re captcha v2
+RECAPTCHA_PUBLIC_KEY = '6LfwF5QaAAAAALeu_mHG-MmmuYHORwPyBqmehGuQ'
+RECAPTCHA_PRIVATE_KEY = '6LfwF5QaAAAAANn5nzfg8G77fUfECoGfxHk7x1pq'
 # for test
-SILENCED_SYSTEM_CHECKS = ['captcha.recaptcha_test_key_error']
+#SILENCED_SYSTEM_CHECKS = ['captcha.recaptcha_test_key_error']
 
 
 if os.getcwd() == '/app':
@@ -163,7 +167,3 @@ if os.getcwd() == '/app':
     STATIC_ROOT = 'staticfiles'
 
     STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
-
-    # re captcha v2
-    RECAPTCHA_PUBLIC_KEY = '6LfwF5QaAAAAALeu_mHG-MmmuYHORwPyBqmehGuQ'
-    RECAPTCHA_PRIVATE_KEY = '6LfwF5QaAAAAANn5nzfg8G77fUfECoGfxHk7x1pq'
