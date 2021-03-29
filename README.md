@@ -29,3 +29,5 @@ python manage.py migrate
 ```bash
 python manage.py runserver
 ```
+
+#### Show installed app in https://my-blog-2021.herokuapp.com/
