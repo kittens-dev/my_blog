@@ -18,9 +18,7 @@ def register(request):
         form = FormWithCaptcha()
     else:
         form = FormWithCaptcha(data=request.POST)
-        print(request.POST)
         if form.is_valid():
-            print('AAAAAAAA')
             new_user = form.save()
             authenticated_user = authenticate(username=new_user.username,
                                     password=request.POST['password1'])
