@@ -1,0 +1,41 @@
+{% extends 'blog/base.html' %}
+
+
+{% block header %}
+    <div class="jumbotron jumbotron-fluid">
+        <h1 class="display-4">{{ topic }}</h1>
+    </div>
+{% endblock header %}
+
+{% block content %}
+    
+    <a href="{% url 'blog:new_entry' topic.id %}" method="post" class="btn btn-primary">добавить новую запись</a>
+
+    <hr />
+
+    {% for entry in entries %}
+        <ul class="list-group list-group-mine">
+        <li class="list-group-item">
+        <div class="card text-dark bg-light mb-3">
+            <div class="card-header">
+                <h6 class="card-title"> 
+                    {{ entry.date_added|date:'M d, Y H:i' }}
+                    <small>
+                        <a href="{% url 'blog:edit_entry' entry.id %}">редактировать запись</a>
+                    </small>
+                </h6>
+            <div>
+            <h4>
+                <a href="{% url 'blog:entry' entry.id %}" class="link-dark">{{ entry.title }}</a>
+            </h4>
+            <div class="card-body">
+                <p class="card-text">{{ entry.text|safe }}</p>
+            <div>
+        </div>
+        </li>
+        </ul>
+    {% empty %}
+        Не найдено записей.
+    {% endfor %}   
+
+{% endblock content %}

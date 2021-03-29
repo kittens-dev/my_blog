@@ -1,0 +1,40 @@
+{% extends 'blog/base.html' %}
+
+{% block header %}
+    <div class="jumbotron jumbotron-fluid">
+    <p class="lead">
+        <a href="{% url 'users:register' %}">Зарегистрируйтесь</a> чтобы вести свой блог.
+    </p>
+    </div>
+{% endblock header %}
+
+{% block content %}
+    {% for entry in entries %}
+        <ul class="list-group list-group-mine">
+        <li class="list-group-item">
+        <div class="card text-dark bg-light mb-3">
+            <div class="card-header">
+                <h6 class="card-title"> 
+                    {% if user == entry.topic.owner %}
+                        <a href="{% url 'blog:topic' entry.topic.id %}" class="link-secondary">{{ entry.topic }}</a>  
+                    {% else %}
+                        <font color="grey">{{ entry.topic }}</font>
+                    {% endif %} 
+                    - {{ entry.date_added|date:'M d, Y H:i' }}
+                    <small> (добавлено <b>{{ entry.topic.owner }}</b>)</small>
+                </h6>
+                <h4>
+                    <a href="{% url 'blog:entry' entry.id %}" class="link-dark">{{ entry.title }}</a>
+                </h4>
+            <div>
+            <div class="card-body">
+                <p class="card-text">{{ entry.text|safe }}</p>
+            <div>
+        </div>
+        </li>
+        </ul>
+    {% empty %}
+        Не найдено записей.
+    {% endfor %}   
+
+{% endblock content %}
