@@ -17,7 +17,7 @@ source env/bin/activate
 4. Install Python modules (from requirements.txt)
 ```bash
 pip install <module_name>
-bash
+```
 
 5. Make migrate App:
 ```bash
